@@ -1,0 +1,12 @@
+{
+  "name": "com.iup.childs-of-underground-battle-system",
+  "version": "1.0.0",
+  "displayName": "IUP Childs of Undergound Battle System",
+  "description": "Боевая система, представляющая собой смесь режимов пошаговости и действий в реальном времени. Написана специально для проекта \"Дети Подземелий\".",
+  "author": {
+    "name": "PostEnot",
+    "email": "ve.vyshegorodsky.cold@gmail.com",
+    "url": "https://t.me/ProcyonNihil"
+  },
+  "type": "library"
+}
