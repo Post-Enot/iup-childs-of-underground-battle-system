@@ -10,7 +10,7 @@ namespace IUP.ChildsOfUnderground.BattleSystem
         /// <summary>
         /// Паттерн боевой арены.
         /// </summary>
-        public CellarMapAsset ArenaPattern { get; }
+        public IReadOnlyCellarMap ArenaPattern { get; }
         /// <summary>
         /// Сценарий боевой сцены.
         /// </summary>

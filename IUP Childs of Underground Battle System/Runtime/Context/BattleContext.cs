@@ -10,14 +10,14 @@ namespace IUP.ChildsOfUnderground.BattleSystem
         /// <param name="battleArenaPattern">Паттерн боевой арены.</param>
         /// <param name="battleScript">Сценарий боевой сцены.</param>
         public BattleContext(
-            CellarMapAsset battleArenaPattern,
+            IReadOnlyCellarMap battleArenaPattern,
             IBattleScript battleScript)
         {
             ArenaPattern = battleArenaPattern;
             BattleScript = battleScript;
         }
 
-        public CellarMapAsset ArenaPattern { get; }
+        public IReadOnlyCellarMap ArenaPattern { get; }
         public IBattleScript BattleScript { get; }
     }
 }

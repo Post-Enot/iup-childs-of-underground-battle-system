@@ -1,14 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Tilemaps;
 
 namespace IUP.ChildsOfUnderground.BattleSystem
 {
     public sealed class Battle : MonoBehaviour, IBattle
     {
         [Header("Temporary:")]
-        [SerializeField] private Tilemap _tilemap;
+        [SerializeField] private Grid _grid;
         [SerializeField] private float _minTurnDurationInSecond;
 
         [Header("Events:")]
@@ -41,10 +40,10 @@ namespace IUP.ChildsOfUnderground.BattleSystem
             _entitiesRoot = InstantiateEntitiesRoot();
             _battleLoop = new BattleLoop(_eventBus, this, _minTurnDurationInSecond);
             ArenaPresenter = _arenaGenerator.Generate(
-                battleContext.ArenaPattern.CellarMap,
+                battleContext.ArenaPattern,
                 _eventBus,
                 _entitiesRoot,
-                _tilemap);
+                _grid);
             _battleScript = battleContext.BattleScript;
             _battleScript.Init(_battleLoop, _eventBus, ArenaPresenter, _entitySpawner);
             Inited?.Invoke();

@@ -1,6 +1,5 @@
 ﻿using IUP.Toolkits.CellarMaps;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace IUP.ChildsOfUnderground.BattleSystem
 {
@@ -17,10 +16,10 @@ namespace IUP.ChildsOfUnderground.BattleSystem
             IReadOnlyCellarMap arenaPattern,
             IBattleEventBus eventBus,
             Transform arenaRoot,
-            Tilemap tilemap)
+            Grid grid)
         {
             BattleArena battleArena = new(arenaPattern.Width, arenaPattern.Height, eventBus);
-            BattleArenaPresenter battleArenaPresenter = new(battleArena, 1, arenaRoot, tilemap);
+            BattleArenaPresenter battleArenaPresenter = new(battleArena, 1, arenaRoot, grid);
             for (int layerIndex = 0; layerIndex < arenaPattern.LayersCount; layerIndex += 1)
             {
                 for (int y = 0; y < arenaPattern.Height; y += 1)

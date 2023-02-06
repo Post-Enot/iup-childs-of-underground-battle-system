@@ -1,6 +1,5 @@
 using IUP.Toolkits.CellarMaps;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace IUP.ChildsOfUnderground.BattleSystem
 {
@@ -21,6 +20,6 @@ namespace IUP.ChildsOfUnderground.BattleSystem
             IReadOnlyCellarMap arenaPattern,
             IBattleEventBus eventBus,
             Transform entitiesRoot,
-            Tilemap tilemap);
+            Grid grid);
     }
 }

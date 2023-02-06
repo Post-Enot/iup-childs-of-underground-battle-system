@@ -1,6 +1,6 @@
 using IUP.Toolkits;
+using Unity.VisualScripting.YamlDotNet.RepresentationModel;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace IUP.ChildsOfUnderground.BattleSystem
 {
@@ -10,27 +10,20 @@ namespace IUP.ChildsOfUnderground.BattleSystem
             IBattleArena battleArena,
             int cellSizeInUnit,
             Transform entitiesRoot,
-            Tilemap tilemap)
+            Grid grid)
         {
             BattleArena = battleArena;
             CellSize = cellSizeInUnit;
             EntitiesRoot = entitiesRoot;
-            Tilemap = tilemap;
-            tilemap.layoutGrid.cellSize = new Vector3(cellSizeInUnit, cellSizeInUnit);
-            const float anchorMiddleShift = 0.5f;
-            var tileAnchor = new Vector3()
-            {
-                x = BattleArena.Width.IsEven() ? anchorMiddleShift : 0,
-                y = BattleArena.Height.IsEven() ? anchorMiddleShift : 0
-            };
-            tilemap.tileAnchor = tileAnchor;
+            Grid = grid;
+            grid.cellSize = new Vector3(cellSizeInUnit, cellSizeInUnit);
         }
 
         public int Width => BattleArena.Width;
         public int Height => BattleArena.Height;
         public float CellSize { get; }
         public Transform EntitiesRoot { get; }
-        public Tilemap Tilemap { get; }
+        public Grid Grid { get; }
         public IBattleArena BattleArena { get; }
 
         public void SetEntityOnCell(ICellEntityPresenter entityPresenter, Vector2Int coordinate)
@@ -41,8 +34,10 @@ namespace IUP.ChildsOfUnderground.BattleSystem
         public void SetEntityOnCell(ICellEntityPresenter entityPresenter, int x, int y)
         {
             entityPresenter.transform.parent = EntitiesRoot;
-            Vector3 position = GetCellWorldPosition(x, y);
-            position.z = entityPresenter.transform.position.z;
+            Vector3Int positionOnGrid = new Vector3Int(x, y, 0);
+            Vector3 position = Grid.CellToWorld(positionOnGrid);
+
+            position += entityPresenter.transform.position;
             entityPresenter.transform.position = position;
             if (!BattleArena[x, y].PutEntity(entityPresenter.Entity))
             {

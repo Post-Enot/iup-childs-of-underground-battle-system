@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace IUP.ChildsOfUnderground.BattleSystem
 {
@@ -21,7 +20,7 @@ namespace IUP.ChildsOfUnderground.BattleSystem
         /// Корневой transform иерархии сущностей боевой арены.
         /// </summary>
         public Transform EntitiesRoot { get; }
-        public Tilemap Tilemap { get; }
+        public Grid Grid { get; }
         /// <summary>
         /// Ссылка на модель боевой арены.
         /// </summary>
